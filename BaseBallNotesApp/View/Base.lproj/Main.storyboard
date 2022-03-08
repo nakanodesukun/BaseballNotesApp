@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Calendar View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CalendarViewController" customModule="BaseBallNotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cjc-gN-xck" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="yyy年MM月"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="iLG-bH-sFt"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="calendar" destination="Cjc-gN-xck" id="33Z-ak-4FL"/>
+                        <segue destination="VCa-xv-21c" kind="presentation" identifier="DetaileViewController" modalPresentationStyle="fullScreen" id="fEq-YU-Lbu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="93.75"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="Viy-4P-9NN">
+            <objects>
+                <viewController id="hFC-8g-tYd" customClass="DetailViewController" customModule="BaseBallNotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VzT-G3-n1T">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日の振り返り日記" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlL-yo-nnh">
+                                <rect key="frame" x="20" y="103" width="190" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="1Hu-Qn-GOg"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="DfB-ya-YI2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-qh-YZV">
+                                <rect key="frame" x="98" y="721" width="219" height="67"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="219" id="OcB-kU-Gld"/>
+                                    <constraint firstAttribute="height" constant="67" id="fFv-hY-UwO"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="保存する">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapSaveButton:" destination="hFC-8g-tYd" eventType="touchUpInside" id="MWu-7c-0X5"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqW-Q9-viA">
+                                <rect key="frame" x="20" y="162" width="374" height="521"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="7ze-J2-SPj"/>
+                                    <constraint firstAttribute="height" constant="521" id="WtM-B6-6YU"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hFC-8g-tYd" id="PWC-1M-A8R"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mOs-xD-ID3"/>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <constraints>
+                            <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="fAH-qh-YZV" secondAttribute="trailing" constant="97" id="E4N-Ss-G0i"/>
+                            <constraint firstItem="fAH-qh-YZV" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="98" id="QQR-Uk-9iJ"/>
+                            <constraint firstItem="PqW-Q9-viA" firstAttribute="top" secondItem="BlL-yo-nnh" secondAttribute="bottom" constant="24" id="VYs-TR-7Dr"/>
+                            <constraint firstItem="BlL-yo-nnh" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="20" id="blA-iG-ta5"/>
+                            <constraint firstItem="PqW-Q9-viA" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="20" id="dHk-9p-3IM"/>
+                            <constraint firstItem="BlL-yo-nnh" firstAttribute="top" secondItem="mOs-xD-ID3" secondAttribute="top" constant="15" id="l8c-C5-KgZ"/>
+                            <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="BlL-yo-nnh" secondAttribute="trailing" constant="204" id="mwW-Ce-na2"/>
+                            <constraint firstItem="fAH-qh-YZV" firstAttribute="top" secondItem="PqW-Q9-viA" secondAttribute="bottom" constant="38" id="myx-yS-UG1"/>
+                            <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="PqW-Q9-viA" secondAttribute="trailing" constant="20" id="n5e-ei-PFm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="t1X-YU-I7O">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="dng-Tt-Daw">
+                            <connections>
+                                <segue destination="1SF-ZR-Lje" kind="unwind" unwindAction="editWithSegue:" id="KOu-yP-9RM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="diaryTextView" destination="PqW-Q9-viA" id="cjp-Z0-z8Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aGu-QP-gFb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="1SF-ZR-Lje" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1760.8695652173915" y="93.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="J3R-Np-fTJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VCa-xv-21c" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ddE-Tb-b2D">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hFC-8g-tYd" kind="relationship" relationship="rootViewController" id="n9P-ic-D1p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5oW-6e-Ip1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="850.72463768115949" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
