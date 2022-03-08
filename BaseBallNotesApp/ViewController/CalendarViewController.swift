@@ -11,7 +11,6 @@ final class CalendarViewController: UIViewController {
     private let japaneseWeek = ["日", "月", "火", "水", "木", "金", "土"]
     
     var selectDate = ""
-
     // タイプミス防止
     private let toDetaileViewController = "DetaileViewController"
 
@@ -19,7 +18,6 @@ final class CalendarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         changeOfDay(oneWeek: japaneseWeek)
     }
     // 曜日の表示を変換するメソッド
@@ -32,6 +30,7 @@ final class CalendarViewController: UIViewController {
 
     @IBAction private func edit(segue: UIStoryboardSegue) {
     }
+    
 }
 extension CalendarViewController: FSCalendarDelegate {
 

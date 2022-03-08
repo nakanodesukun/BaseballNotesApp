@@ -17,9 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cjc-gN-xck" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cjc-gN-xck" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="44" width="414" height="784"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="yyy年MM月"/>
@@ -31,6 +30,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="Cjc-gN-xck" secondAttribute="bottom" constant="34" id="4SI-KP-yHw"/>
+                            <constraint firstItem="Cjc-gN-xck" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7UE-YQ-yDH"/>
+                            <constraint firstItem="Cjc-gN-xck" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Tcs-48-ItA"/>
+                            <constraint firstItem="Cjc-gN-xck" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hI1-DZ-y3j"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="calendar" destination="Cjc-gN-xck" id="33Z-ak-4FL"/>
@@ -49,31 +54,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日の振り返り日記" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlL-yo-nnh">
-                                <rect key="frame" x="20" y="103" width="190" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="1Hu-Qn-GOg"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="DfB-ya-YI2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-qh-YZV">
-                                <rect key="frame" x="98" y="721" width="219" height="67"/>
-                                <color key="backgroundColor" name="AccentColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="219" id="OcB-kU-Gld"/>
-                                    <constraint firstAttribute="height" constant="67" id="fFv-hY-UwO"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="保存する">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="didTapSaveButton:" destination="hFC-8g-tYd" eventType="touchUpInside" id="MWu-7c-0X5"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqW-Q9-viA">
                                 <rect key="frame" x="20" y="162" width="374" height="521"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -88,19 +68,43 @@
                                     <outlet property="delegate" destination="hFC-8g-tYd" id="PWC-1M-A8R"/>
                                 </connections>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日の振り返り日記" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlL-yo-nnh">
+                                <rect key="frame" x="20" y="103" width="190" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="1Hu-Qn-GOg"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="DfB-ya-YI2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-qh-YZV">
+                                <rect key="frame" x="114" y="715" width="187" height="57"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="kK6-ai-u2S"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="保存する">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapSaveButton:" destination="hFC-8g-tYd" eventType="touchUpInside" id="MWu-7c-0X5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mOs-xD-ID3"/>
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                         <constraints>
-                            <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="fAH-qh-YZV" secondAttribute="trailing" constant="97" id="E4N-Ss-G0i"/>
-                            <constraint firstItem="fAH-qh-YZV" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="98" id="QQR-Uk-9iJ"/>
+                            <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="fAH-qh-YZV" secondAttribute="trailing" constant="113" id="49P-KO-tsd"/>
                             <constraint firstItem="PqW-Q9-viA" firstAttribute="top" secondItem="BlL-yo-nnh" secondAttribute="bottom" constant="24" id="VYs-TR-7Dr"/>
                             <constraint firstItem="BlL-yo-nnh" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="20" id="blA-iG-ta5"/>
+                            <constraint firstItem="fAH-qh-YZV" firstAttribute="top" secondItem="PqW-Q9-viA" secondAttribute="bottom" constant="32" id="d0O-wy-LWu"/>
                             <constraint firstItem="PqW-Q9-viA" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="20" id="dHk-9p-3IM"/>
                             <constraint firstItem="BlL-yo-nnh" firstAttribute="top" secondItem="mOs-xD-ID3" secondAttribute="top" constant="15" id="l8c-C5-KgZ"/>
                             <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="BlL-yo-nnh" secondAttribute="trailing" constant="204" id="mwW-Ce-na2"/>
-                            <constraint firstItem="fAH-qh-YZV" firstAttribute="top" secondItem="PqW-Q9-viA" secondAttribute="bottom" constant="38" id="myx-yS-UG1"/>
                             <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="PqW-Q9-viA" secondAttribute="trailing" constant="20" id="n5e-ei-PFm"/>
+                            <constraint firstItem="fAH-qh-YZV" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="114" id="ttp-JU-EVm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t1X-YU-I7O">

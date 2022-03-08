@@ -26,22 +26,27 @@ final class DetailViewController: UIViewController {
         do {
             let realmDaiary = RealmDaiary()
             let realm = try Realm()
+            realmDaiary.diaryText = diaryTextView.text
+            realmDaiary.dateText = selectedDate
             try realm.write({
-                realmDaiary.diaryText = diaryTextView.text
                 realm.add(realmDaiary)
             })
         } catch {
+            print(error.localizedDescription)
             showAlert()
         }               // キーボードの非表示
         diaryTextView.resignFirstResponder()
     }
 
-    private  func showAlert() {
+    private func showAlert() {
         let title = "エラー"
         let message = "保存に失敗しました"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
+    }
+    func realm() {
+
     }
 }
