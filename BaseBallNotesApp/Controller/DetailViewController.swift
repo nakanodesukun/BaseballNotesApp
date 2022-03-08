@@ -4,7 +4,6 @@
 //
 //  Created by 中野翔太 on 2022/03/07.
 //
-
 import UIKit
 import RealmSwift
 
@@ -18,7 +17,9 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = selectedDate
+        userData()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+
     }
     
     @IBAction private func didTapSaveButton(_ sender: Any) {
@@ -46,7 +47,18 @@ final class DetailViewController: UIViewController {
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
-    func realm() {
 
+    func userData() {
+        do {
+            let realm = try Realm()      // RealmDairyクラスをインスタンス化せずにクラス名を指定*注意
+            let userDatas = realm.objects(RealmDaiary.self).value(forKey: "diaryText")
+            userDatas.map { aa in
+                diaryTextView.text = aa as? String
+            }
+            diaryTextView.text = userData as? String
+        } catch {
+            print(error.localizedDescription)
+            print("エラー\(error.localizedDescription)")
+        }
     }
 }
