@@ -11,6 +11,8 @@ final class DetailViewController: UIViewController {
     // CalandarViewControllerから選択された日付を取得する
     var selectedDate = ""
 
+    weak var delegate: inputDelegate?
+
     @IBOutlet private weak var diaryTextView: UITextView!
 
     override func viewDidLoad() {
@@ -21,13 +23,12 @@ final class DetailViewController: UIViewController {
     }
 
     @IBAction private func didTapSaveButton(_ sender: Any) {
-                            // Protocolの型にして適合させる
-        let realmUserData: inputDelegate = RealmUserData()
+
         guard let diaryText = diaryTextView.text else {
             return
         }
-
-        realmUserData.inputText(diaryText: diaryText, selectedDate: selectedDate)
+                // RealmUserDataに処理を依頼する
+        delegate?.inputText(diaryText: diaryText, selectedDate: selectedDate)
                   // キーボードの非表示
         diaryTextView.resignFirstResponder()
     }

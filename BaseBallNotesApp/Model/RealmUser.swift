@@ -8,7 +8,8 @@
 import RealmSwift
 
 class RealmUser: Object {
+
  @objc dynamic var diaryText = ""
  @objc dynamic var diaryDate = ""
-
+    
 }

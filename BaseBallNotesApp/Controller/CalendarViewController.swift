@@ -45,7 +45,7 @@ extension CalendarViewController: FSCalendarDelegate {
         do {
             let realm = try Realm() // RealmDairyクラスをインスタンス化せずにクラス名を指定*注意
             let diaryDate = selectDate
-                                                                                // 
+                                                                                //
             let userDataObjects = realm.objects(RealmUser.self).filter("diaryDate == %@", selectDate)
             print(userDataObjects)
         } catch {
