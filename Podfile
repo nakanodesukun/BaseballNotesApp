@@ -9,5 +9,5 @@ target 'BaseBallNotesApp' do
 
 pod 'RealmSwift'
 pod 'FSCalendar'
-
+pod 'IQKeyboardManagerSwift'
 end
