@@ -8,18 +8,15 @@
 import RealmSwift
 import Foundation
 // 抽象化する。 ViewControllerからModelへdelegateを使って処理を委譲する方法がわからない。
-class RealmUserData: inputDelegate {
-    
-    detailViewController.delegate = self
+final class RealmUserData: UserDataType {
 
-    func inputText(diaryText: String, selectedDate: String) {
-
-        //  try!を使わないようにdo-catch文を使う
+    func inputText(diaryText: String, diaryDate: String) {
+                //  try!を使わないようにdo-catch文を使う
         do {
             let realmUser = RealmUser()
             let realm = try Realm()
             realmUser.diaryText = diaryText
-            realmUser.diaryDate = selectedDate
+            realmUser.diaryDate = diaryDate
             try realm.write({
                 realm.add(realmUser)
             })

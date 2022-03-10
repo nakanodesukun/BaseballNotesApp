@@ -13,14 +13,12 @@ final class CalendarViewController: UIViewController {
     var selectDate = ""
     // タイプミス防止
     private let toDetaileViewController = "DetaileViewController"
-    private let realmUserData = RealmUserData()
 
     @IBOutlet private weak var calendar: FSCalendar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         changeOfDay()
-
     }
     // 曜日の表示を変換するメソッド
     private func changeOfDay() {
@@ -38,19 +36,11 @@ final class CalendarViewController: UIViewController {
 extension CalendarViewController: FSCalendarDelegate {
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        // UIに関するのでViewControllerで記述
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY年MM月dd日EEEE"
         let japaneseWeek = formatter.string(from: date)
         selectDate = japaneseWeek
-        do {
-            let realm = try Realm() // RealmDairyクラスをインスタンス化せずにクラス名を指定*注意
-            let diaryDate = selectDate
-                                                                                //
-            let userDataObjects = realm.objects(RealmUser.self).filter("diaryDate == %@", selectDate)
-            print(userDataObjects)
-        } catch {
-            print("エラー\(error.localizedDescription)")
-        }
 
         performSegue(withIdentifier: toDetaileViewController, sender: nil)
     }
