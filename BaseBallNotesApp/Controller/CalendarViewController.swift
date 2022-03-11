@@ -9,8 +9,8 @@ import FSCalendar
 import RealmSwift
 
 final class CalendarViewController: UIViewController {
-        // 値渡しで保持する
-    var selectDate = ""
+    // 値渡しで保持する
+    private (set) var selectDate = ""
     // タイプミス防止
     private let toDetaileViewController = "DetaileViewController"
 
@@ -23,7 +23,6 @@ final class CalendarViewController: UIViewController {
     // 曜日の表示を変換するメソッド
     private func changeOfDay() {
         let japaneseWeek = ["日", "月", "火", "水", "木", "金", "土"]
-        // forEachに変更してもいいかも
         for countNumber in 0..<japaneseWeek.count {
             calendar.calendarWeekdayView.weekdayLabels[countNumber].text = japaneseWeek[countNumber]
         }
@@ -36,12 +35,7 @@ final class CalendarViewController: UIViewController {
 extension CalendarViewController: FSCalendarDelegate {
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        // UIに関するのでViewControllerで記述
-        let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY年MM月dd日EEEE"
-        let japaneseWeek = formatter.string(from: date)
-        selectDate = japaneseWeek
-
+        changeDate(date: date)
         performSegue(withIdentifier: toDetaileViewController, sender: nil)
     }
 
@@ -57,5 +51,12 @@ extension CalendarViewController: FSCalendarDelegate {
         default:
             break
         }
+    }
+    // UIに関するのでViewControllerで処理
+    private func changeDate(date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY年MM月dd日EEEE"
+        let japaneseWeek = formatter.string(from: date)
+        selectDate = japaneseWeek
     }
 }
