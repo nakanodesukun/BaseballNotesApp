@@ -6,8 +6,9 @@
 //
 
 import RealmSwift
+import Foundation
 
  final class RealmUser: Object {
- @objc dynamic var diaryText = ""
- @objc dynamic var diaryDate = ""
+     @objc dynamic var diaryText = ""
+     @objc dynamic var diaryDate = Date()
 }

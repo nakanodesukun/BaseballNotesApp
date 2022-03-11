@@ -27,6 +27,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="tst-Nv-Wr0"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="iLG-bH-sFt"/>
                                 </connections>
                             </view>

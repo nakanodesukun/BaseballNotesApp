@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+            // マイグレーション処理
+            migration()
+          // Realmマイグレーション処理
+          func migration() {
+            // 次のバージョン（現バージョンが０なので、１をセット）
+            let nextSchemaVersion = 1
+
+            // マイグレーション設定
+            let config = Realm.Configuration(
+                schemaVersion: UInt64(nextSchemaVersion),
+              migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < nextSchemaVersion) {
+                }
+              })
+              Realm.Configuration.defaultConfiguration = config
+          }
         IQKeyboardManager.shared.enable = true
         return true
     }
