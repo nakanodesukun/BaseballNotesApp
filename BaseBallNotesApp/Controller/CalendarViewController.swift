@@ -10,7 +10,7 @@ import RealmSwift
 
 final class CalendarViewController: UIViewController {
     // 値渡しで保持する
-    private (set) var selectDate: Date? = nil
+    private (set) var selectDate = Date()
     // タイプミス防止
     private let toDetaileViewController = "DetaileViewController"
 
@@ -20,6 +20,13 @@ final class CalendarViewController: UIViewController {
         super.viewDidLoad()
         changeOfDay()
     }
+
+    // 画面が表示された直後に再描画する
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        calendar.reloadData()
+    }
+
     // 曜日の表示を変換するメソッド
     private func changeOfDay() {
         let japaneseWeek = ["日", "月", "火", "水", "木", "金", "土"]
@@ -30,15 +37,18 @@ final class CalendarViewController: UIViewController {
 
     @IBAction private func edit(segue: UIStoryboardSegue) {
     }
-
-    
 }
+
 extension CalendarViewController: FSCalendarDataSource {
                         // マルポチを表示する
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        dateaa(date: date)
+}
+    func dateaa(date: Date) -> Int {
         do {
             let realm = try Realm()
             let realmObjects = realm.objects(RealmUser.self)
+                                // fscalendarと保存したデータの日付が同じか判定
             let date = realmObjects.filter("diaryDate == %@", date).count
             return date
         } catch {
@@ -61,9 +71,6 @@ extension CalendarViewController: FSCalendarDelegate {
                       return
                   }
             // DetaileViewControllerへ値渡し
-            guard let selectDate = selectDate else {
-                return
-            }
             deatileViewController.selectedDate = selectDate
         default:
             break

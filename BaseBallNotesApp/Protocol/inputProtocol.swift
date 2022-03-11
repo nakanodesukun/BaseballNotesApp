@@ -8,6 +8,8 @@
 import Foundation
 
 protocol UserDataType: AnyObject {
-    // ユーザーからの入力イベントを受け取る  // model側にViewがControllerが処理をdelegateを使って行いたいがやり方がわからない。
-    func inputText(diaryText: String, diaryDate: Date)
+    // ユーザーからの入力イベントを受け取る  
+    func inputData(inputText: String, inputDate: Date)
+    // ユーザから削除イベントを受け取る
+    func deleteData(removeDate: Date)
 }

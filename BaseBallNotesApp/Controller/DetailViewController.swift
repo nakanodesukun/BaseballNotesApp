@@ -9,8 +9,11 @@ import RealmSwift
 
 final class DetailViewController: UIViewController {
 
-    // CalandarViewControllerから選択された日付を取得する
+    // CalandarViewControllerから選択された日付を取得する(値渡し時)
     var selectedDate = Date()
+    // Protocolに準拠した構造体に対応することで差し替え可能にする(Modelか呼び出し)
+    let realmUser: UserDataType = RealmUserData()
+
 
     @IBOutlet private weak var diaryTextView: UITextView!
 
@@ -18,7 +21,26 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
             // 日付を変換したものを表示する
         navigationItem.title = changeDate(date: selectedDate)
+        updateData()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+    }
+
+    @IBAction private func didTapSaveButton(_ sender: Any) {
+          // 入力された文字が空だったら早期リターン
+        guard  diaryTextView.text.isEmpty == false else {
+            showAlert()
+            return
+        }
+        realmUser.inputData(inputText: diaryTextView.text, inputDate: selectedDate)
+    }
+
+    @IBAction private func didTapDeleteButton(_ sender: Any) {
+        realmUser.deleteData(removeDate: selectedDate)
+        // 削除されたタイミングでtextViewの中身を空にする
+        diaryTextView.text = ""
+    }
+
+   private func updateData() {
         do {
             let realm = try Realm() // RealmDairyクラスをインスタンス化せずにクラス名を指定*注意             // 最後に保存したデータを取得する
             let userDataObjects = realm.objects(RealmUser.self).filter("diaryDate == %@", selectedDate).last?.value(forKey: "diaryText")
@@ -26,15 +48,6 @@ final class DetailViewController: UIViewController {
         } catch {
             print("書き込まれたデータが存在していません\(error.localizedDescription)")
         }
-
-    }
-
-    @IBAction private func didTapSaveButton(_ sender: Any) {
-
-        let diaryText = diaryTextView.text ?? ""
-                        // Protocolに準拠した構造体に対応することで差し替え可能にする
-        let realmUser: UserDataType = RealmUserData()
-        realmUser.inputText(diaryText: diaryText, diaryDate: selectedDate)
     }
 
     // Date型をString型に変換
@@ -46,4 +59,12 @@ final class DetailViewController: UIViewController {
         return japaneseWeek
     }
 
+    private func showAlert() {
+        let title = "保存に失敗しました"
+        let message = "文字を入力してください"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
 }

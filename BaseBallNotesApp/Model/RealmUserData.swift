@@ -7,21 +7,33 @@
 
 import RealmSwift
 import Foundation
-// 抽象化する。 ViewControllerからModelへdelegateを使って処理を委譲する方法がわからない。
+                            // 抽象化する。
 final class RealmUserData: UserDataType {
-    
-    func inputText(diaryText: String, diaryDate: Date) {
+
+    func inputData(inputText diaryText: String, inputDate selectedDate: Date) {
                 //  try!を使わないようにdo-catch文を使う
         do {
             let realmUser = RealmUser()
             let realm = try Realm()
             realmUser.diaryText = diaryText
-            realmUser.diaryDate = diaryDate
+            realmUser.diaryDate = selectedDate
             try realm.write({
                 realm.add(realmUser)
             })
         } catch {
-            print(error.localizedDescription)
+            print("保存に失敗しました\(error.localizedDescription)")
+        }
+    }
+
+    func deleteData(removeDate selectedDate: Date) {
+        do {
+            let realm = try Realm()                                         // 日付が同じだったら削除
+            let targetDeleate = realm.objects(RealmUser.self).filter("diaryDate == %@", selectedDate)
+            try realm.write({
+                realm.delete(targetDeleate)
+            })
+        } catch {
+            print("削除に失敗しました\(error.localizedDescription)")
         }
     }
 }
