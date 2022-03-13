@@ -37,3 +37,19 @@ final class RealmUserData: UserDataType {
         }
     }
 }
+
+extension RealmUserData: UserDateType {
+
+    // データが存在していればその日付に点マークをつけるメソッド
+    func scoreDate(decisionDate: Date) -> Int {
+        do {
+            let realm = try Realm()
+            let realmObjects = realm.objects(RealmUser.self)
+                                // fscalendarと保存したデータの日付が同じか判定
+            let date = realmObjects.filter("diaryDate == %@", decisionDate).count
+            return date
+        } catch {
+            return 0
+        }
+    }
+}

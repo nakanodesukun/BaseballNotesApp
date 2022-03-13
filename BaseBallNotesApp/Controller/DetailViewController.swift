@@ -7,15 +7,15 @@
 import UIKit
 import RealmSwift
 
-final class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     // CalandarViewControllerから選択された日付を取得する(値渡し時)
     var selectedDate = Date()
     // Protocolに準拠した構造体に対応することで差し替え可能にする(Modelか呼び出し)
-    let realmUser: UserDataType = RealmUserData()
-
+    private let realmUser: UserDataType = RealmUserData()
 
     @IBOutlet private weak var diaryTextView: UITextView!
+    @IBOutlet private weak var cookingImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,15 @@ final class DetailViewController: UIViewController {
         realmUser.inputData(inputText: diaryTextView.text, inputDate: selectedDate)
     }
 
+    @IBAction private  func didTapPhotoLibraryButton(_ sender: Any) {
+        guard  UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            return
+        }
+        // 
+        let imagePickerController = UIImagePickerController()
+
+    }
+
     @IBAction private func didTapDeleteButton(_ sender: Any) {
         realmUser.deleteData(removeDate: selectedDate)
         // 削除されたタイミングでtextViewの中身を空にする
@@ -42,7 +51,7 @@ final class DetailViewController: UIViewController {
 
    private func updateData() {
         do {
-            let realm = try Realm() // RealmDairyクラスをインスタンス化せずにクラス名を指定*注意             // 最後に保存したデータを取得する
+            let realm = try Realm() // *注意RealmDairyクラスをインスタンス化せずにクラス名を指定             // 最後に保存したデータを取得する
             let userDataObjects = realm.objects(RealmUser.self).filter("diaryDate == %@", selectedDate).last?.value(forKey: "diaryText")
             diaryTextView.text = userDataObjects as? String ?? ""
         } catch {
@@ -55,7 +64,6 @@ final class DetailViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY年MM月dd日EEEE"
         let japaneseWeek = formatter.string(from: date)
-        print(japaneseWeek)
         return japaneseWeek
     }
 
@@ -67,4 +75,5 @@ final class DetailViewController: UIViewController {
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
+
 }

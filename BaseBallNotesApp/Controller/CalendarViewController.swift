@@ -40,20 +40,11 @@ final class CalendarViewController: UIViewController {
 }
 
 extension CalendarViewController: FSCalendarDataSource {
-                        // マルポチを表示する
+    // マルポチを表示する
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        dateaa(date: date)
-}
-    func dateaa(date: Date) -> Int {
-        do {
-            let realm = try Realm()
-            let realmObjects = realm.objects(RealmUser.self)
-                                // fscalendarと保存したデータの日付が同じか判定
-            let date = realmObjects.filter("diaryDate == %@", date).count
-            return date
-        } catch {
-            return 0
-        }
+        // Modelから処理を呼び出す
+        let realmUserData: UserDateType = RealmUserData()
+        return realmUserData.scoreDate(decisionDate: date)
     }
 }
 extension CalendarViewController: FSCalendarDelegate {

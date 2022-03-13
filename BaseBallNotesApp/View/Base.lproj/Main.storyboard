@@ -58,13 +58,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqW-Q9-viA">
-                                <rect key="frame" x="20" y="162" width="374" height="521"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PqW-Q9-viA">
+                                <rect key="frame" x="20" y="424" width="374" height="202"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="7ze-J2-SPj"/>
-                                    <constraint firstAttribute="height" constant="521" id="WtM-B6-6YU"/>
-                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -72,22 +69,17 @@
                                     <outlet property="delegate" destination="hFC-8g-tYd" id="PWC-1M-A8R"/>
                                 </connections>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日の振り返り日記" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlL-yo-nnh">
-                                <rect key="frame" x="20" y="88" width="289" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="289" id="ee6-cD-9ec"/>
-                                    <constraint firstAttribute="height" constant="50" id="xQk-Uv-erA"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日の料理写真をセットしよう！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlL-yo-nnh" userLabel="今日の料理">
+                                <rect key="frame" x="20" y="107" width="289" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-qh-YZV">
-                                <rect key="frame" x="122" y="713" width="171" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-qh-YZV">
+                                <rect key="frame" x="122" y="761" width="171" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="AccentColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="SL1-JS-bRq"/>
-                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="保存">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,12 +88,10 @@
                                     <action selector="didTapSaveButton:" destination="hFC-8g-tYd" eventType="touchUpInside" id="MWu-7c-0X5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaH-dC-IHa" userLabel="削除">
-                                <rect key="frame" x="122" y="780" width="171" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaH-dC-IHa" userLabel="削除">
+                                <rect key="frame" x="122" y="809" width="171" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="AccentColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="KoY-Wh-ULH"/>
-                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="削除">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -110,24 +100,33 @@
                                     <action selector="didTapDeleteButton:" destination="hFC-8g-tYd" eventType="touchUpInside" id="BwS-V4-lGG"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUI-aU-kLP">
+                                <rect key="frame" x="20" y="137" width="374" height="217"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日の料理日記" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cF-6A-jUh" userLabel="今日の料理">
+                                <rect key="frame" x="20" y="394" width="289" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq2-fE-2ID">
+                                <rect key="frame" x="122" y="709" width="171" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="画像を選択">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapPhotoLibraryButton:" destination="hFC-8g-tYd" eventType="touchUpInside" id="B0q-Pv-rOJ"/>
+                                    <action selector="didTapSaveButton:" destination="hFC-8g-tYd" eventType="touchUpInside" id="0jj-mq-Bzp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mOs-xD-ID3"/>
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                        <constraints>
-                            <constraint firstItem="mOs-xD-ID3" firstAttribute="bottom" secondItem="IaH-dC-IHa" secondAttribute="bottom" constant="51" id="3TX-6t-7dh"/>
-                            <constraint firstItem="BlL-yo-nnh" firstAttribute="top" secondItem="mOs-xD-ID3" secondAttribute="top" id="A3n-Eu-PVk"/>
-                            <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="BlL-yo-nnh" secondAttribute="trailing" constant="105" id="Llt-MO-fS1"/>
-                            <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="IaH-dC-IHa" secondAttribute="trailing" constant="121" id="ReR-dy-g6l"/>
-                            <constraint firstItem="fAH-qh-YZV" firstAttribute="top" secondItem="PqW-Q9-viA" secondAttribute="bottom" constant="30" id="Tf1-N2-hvF"/>
-                            <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="fAH-qh-YZV" secondAttribute="trailing" constant="121" id="Wpa-SC-Oh0"/>
-                            <constraint firstItem="IaH-dC-IHa" firstAttribute="top" secondItem="fAH-qh-YZV" secondAttribute="bottom" constant="36" id="c3t-uh-MQb"/>
-                            <constraint firstItem="PqW-Q9-viA" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="20" id="dHk-9p-3IM"/>
-                            <constraint firstItem="PqW-Q9-viA" firstAttribute="top" secondItem="BlL-yo-nnh" secondAttribute="bottom" constant="24" id="n28-ZI-3fJ"/>
-                            <constraint firstItem="mOs-xD-ID3" firstAttribute="trailing" secondItem="PqW-Q9-viA" secondAttribute="trailing" constant="20" id="n5e-ei-PFm"/>
-                            <constraint firstItem="IaH-dC-IHa" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="122" id="pLh-qU-H4z"/>
-                            <constraint firstItem="BlL-yo-nnh" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="20" id="qxE-pR-Cjq"/>
-                            <constraint firstItem="fAH-qh-YZV" firstAttribute="leading" secondItem="mOs-xD-ID3" secondAttribute="leading" constant="122" id="tf4-nn-6pY"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t1X-YU-I7O">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="dng-Tt-Daw">
@@ -137,6 +136,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cookingImageView" destination="KUI-aU-kLP" id="tsx-xn-I6d"/>
                         <outlet property="diaryTextView" destination="PqW-Q9-viA" id="cjp-Z0-z8Z"/>
                     </connections>
                 </viewController>

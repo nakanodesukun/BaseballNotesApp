@@ -13,3 +13,8 @@ protocol UserDataType: AnyObject {
     // ユーザから削除イベントを受け取る
     func deleteData(removeDate: Date)
 }
+protocol UserDateType: AnyObject {
+
+    func scoreDate(decisionDate: Date) -> Int
+
+}
